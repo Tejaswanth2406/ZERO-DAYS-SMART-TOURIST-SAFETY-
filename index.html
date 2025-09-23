@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tourist SafetyNet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+     <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        @import url('https://rsms.me/inter/inter.css');
+        .leaflet-container {
+            height: 100%;
+            width: 100%;
+            border-radius: 0.5rem;
+            z-index: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes pulse-strong {
+          75%, 100% {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+        .animate-pulse-strong {
+          animation: pulse-strong 1.5s infinite;
+          box-shadow: 0 0 0 0 rgba(239, 68, 68, 1);
+        }
+        @keyframes pulse-vitals {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.1);
+            opacity: .75;
+          }
+        }
+        .animate-pulse-vitals {
+          animation: pulse-vitals 1s infinite ease-in-out;
+        }
+        @keyframes shake {
+          10%, 90% { transform: translateX(-1px); }
+          20%, 80% { transform: translateX(2px); }
+          30%, 50%, 70% { transform: translateX(-4px); }
+          40%, 60% { transform: translateX(4px); }
+        }
+        .animate-shake {
+          animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        .grid-map-background {
+            background-color: #1a2a47; /* A dark navy blue */
+            background-image:
+                linear-gradient(rgba(147, 197, 253, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(147, 197, 253, 0.1) 1px, transparent 1px);
+            background-size: 3rem 3rem;
+            border-radius: 0.5rem;
+        }
+
+        .normal-pin {
+            width: 12px;
+            height: 12px;
+            background-color: #2dd4bf; /* Teal-400 */
+            border-radius: 50%;
+            box-shadow: 0 0 10px #2dd4bf, 0 0 15px #2dd4bf;
+        }
+
+        .pin-container {
+            width: 32px;
+            height: 32px;
+        }
+
+        .teardrop-pin {
+            width: 32px;
+            height: 32px;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            position: relative;
+            box-shadow: -1px 1px 5px rgba(0,0,0,0.4);
+            margin: auto;
+        }
+
+        .teardrop-pin::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .high-severity-pin { background: linear-gradient(135deg, #fbbf24, #f97316); } /* Amber to Orange */
+        .medium-severity-pin { background: linear-gradient(135deg, #c084fc, #a855f7); } /* Purple */
+
+        .leaflet-tooltip-pane .zone-tooltip {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            text-shadow: 0 0 5px black, 0 0 10px black;
+        }
+
+        @keyframes pulse-red-dot {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+        }
+        .animate-pulse-red-dot {
+            animation: pulse-red-dot 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+     </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "qrcode.react": "https://aistudiocdn.com/qrcode.react@^4.2.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-gray-900 text-white">
+    <div id="root"></div>
+  </body>
+</html>
