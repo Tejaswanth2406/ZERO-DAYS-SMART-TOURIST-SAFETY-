@@ -1,3 +1,4 @@
+<img width="1983" height="793" alt="image" src="https://github.com/user-attachments/assets/c93625bb-d381-4807-abe6-8190c97532e9" />
 # Smart Tourist Safety
 
 A responsive, real-time web application designed to enhance traveler security by providing live location tracking, instant emergency alerts, interactive safety maps, and unified risk management features. Built with modern web technologies, it ensures rapid response times and low latency during critical safety situations.
